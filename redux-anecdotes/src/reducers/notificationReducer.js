@@ -1,4 +1,4 @@
-const notificationReducer = (state = '', action) => {
+const notificationReducer = (state = null, action) => {
   console.log('action', action)
   switch (action.type) {
     case 'ADDED':
