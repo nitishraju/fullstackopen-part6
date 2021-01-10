@@ -1,3 +1,5 @@
+import anecdoteService from '../services/anecdotes'
+
 export const asObject = (content) => {
   return {
     content,
@@ -5,6 +7,7 @@ export const asObject = (content) => {
     votes: 0
   }
 }
+
 const anecdoteReducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT_CONTENT':
@@ -24,10 +27,13 @@ const anecdoteReducer = (state = [], action) => {
   }
 }
 
-export const initializeAnecdotes = (content) => {
-  return {
-    type: 'INIT_CONTENT',
-    data: { content }
+export const initializeAnecdotes = () => {
+  return async (dispatch) => {
+    const content = await anecdoteService.getAll()
+    dispatch({
+      type: 'INIT_CONTENT',
+      data: { content }
+    })
   }
 }
 
