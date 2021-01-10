@@ -16,7 +16,7 @@ const AnecdoteList = () => {
   const anecdotes = unsortedAnecdotes.sort(sortByVotes)
 
   const vote = (anecdote) => {
-    dispatch(voteFor(anecdote.id))
+    dispatch(voteFor(anecdote))
     
     dispatch(setVotedMessage(anecdote.content))
     setTimeout(() => {
