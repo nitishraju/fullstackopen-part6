@@ -6,9 +6,7 @@ import { setVotedMessage, resetMessage } from '../reducers/notificationReducer'
 const AnecdoteList = () => {
   const dispatch = useDispatch()
 
-  const unsortedAnecdotes = useSelector(state => {
-    const anecdotes = state.anecdotes
-    const filter = state.filter
+  const unsortedAnecdotes = useSelector(({ anecdotes, filter }) => {  
     if (filter === '') {
       return anecdotes
     }

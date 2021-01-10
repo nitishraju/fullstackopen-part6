@@ -1,5 +1,4 @@
 const notificationReducer = (state = null, action) => {
-  console.log('action', action)
   switch (action.type) {
     case 'ADDED':
       return `Added: ${action.data.content}`
