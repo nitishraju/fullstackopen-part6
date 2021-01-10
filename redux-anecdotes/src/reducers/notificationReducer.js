@@ -1,9 +1,7 @@
 const notificationReducer = (state = null, action) => {
   switch (action.type) {
-    case 'ADDED':
-      return `Added: ${action.data.content}`
-    case 'VOTED':
-      return `Voted: ${action.data.content}`
+    case 'SET_MESSAGE':
+      return action.data.message
     case 'RESET':
       return null 
     default:
@@ -11,23 +9,18 @@ const notificationReducer = (state = null, action) => {
   }
 }
 
-export const setAddedMessage = (content) => {
-  return {
-    type: 'ADDED',
-    data: { content }
-  }
-}
+export const setNotification = (message, duration) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'SET_MESSAGE',
+      data: { message }
+    })
 
-export const setVotedMessage = (content) => {
-  return {
-    type: 'VOTED',
-    data: { content }
-  }
-}
-
-export const resetMessage = () => {
-  return {
-    type: 'RESET'
+    setTimeout(() => {
+      dispatch({
+        type: 'RESET'
+      })
+    }, duration*1000)
   }
 }
 

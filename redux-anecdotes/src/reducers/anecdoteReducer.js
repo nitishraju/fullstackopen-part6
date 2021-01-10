@@ -3,7 +3,6 @@ import anecdoteService from '../services/anecdotes'
 export const asObject = (content) => {
   return {
     content,
-    id: `${Math.floor(Math.random() * 100000)}`,
     votes: 0
   }
 }
@@ -21,7 +20,7 @@ const anecdoteReducer = (state = [], action) => {
       return newState
     case 'ADD_ANECDOTE':
       const newAnecdote = action.data.content
-      return state.concat(asObject(newAnecdote))
+      return state.concat(newAnecdote)
     default:
       return state
   }
@@ -49,11 +48,11 @@ export const voteFor = (anecdoteObj) => {
 
 export const addToAnecdotes = (anecdote) => {
   return async (dispatch) => {
-    await anecdoteService.createAnecdote(anecdote)
+    const anecdoteObj = await anecdoteService.createAnecdote(anecdote)
     dispatch({
       type: 'ADD_ANECDOTE',
       data: {
-        content: anecdote
+        content: anecdoteObj
       }
     })
   }
