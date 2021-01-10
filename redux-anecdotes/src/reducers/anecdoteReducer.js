@@ -1,7 +1,7 @@
-const asObject = (content) => {
+export const asObject = (content) => {
   return {
     content,
-    id: Math.random() * 100000,
+    id: `${Math.floor(Math.random() * 100000)}`,
     votes: 0
   }
 }
